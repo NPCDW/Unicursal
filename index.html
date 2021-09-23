@@ -24,7 +24,7 @@
         <el-input-number v-model="totalCol" :min="1" :max="100" @change="initTable"></el-input-number>
         列
     </div>
-    <p>1为起点，-1为障碍物，0为可以走的路</p>
+    <p>1为起点，-1为障碍物，0为可以走的路，点击单元格可以编辑</p>
     <div :style="{width: totalWidth}">
         <el-table
                 :border="true"
