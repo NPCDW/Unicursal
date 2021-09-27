@@ -8,6 +8,20 @@
     <title>一笔画寻路暴力搜索</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css">
     <style>
+        .inputNumberContent {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 47px;
+            height: 47px;
+        }
+        .inputNumberContent .el-input__inner {
+            height: 47px;
+            line-height: 15px;
+            font-size: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui@2.15.6/lib/index.js"></script>
@@ -47,6 +61,7 @@
                         <el-input-number
                                 v-model="scope.row[item.dataIndex]"
                                 size="mini"
+                                class="inputNumberContent"
                                 :controls="false"
                                 :min="-1"
                                 :max="1"
@@ -171,9 +186,9 @@
             },
             cellStyle({row, column, rowIndex, columnIndex}) {
                 if (row[columnIndex] == -1) {
-                    return "background-color:#F56C6C!important;"
+                    return "border:1px solid #F56C6C!important;border-radius:25px;"
                 } else if (row[columnIndex] == 1) {
-                    return "background-color:#67C23A!important;"
+                    return "border:1px solid #67C23A!important;border-radius:25px;"
                 }
             },
             cellClick(row, column, cell, event) {
