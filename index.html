@@ -77,7 +77,7 @@
     </div>
     <el-button @click="pathfind" type="primary" style="margin: 20px 0 20px 0">寻路</el-button>
     <div v-if="errorMsg">{{errorMsg}}</div>
-    <div :style="{width: totalWidth}" v-if="dataSource2 != null && dataSource2.length != 0">
+    <div :style="{width: totalWidth}" v-if="!errorMsg && dataSource2 != null && dataSource2.length != 0">
         <el-table
                 :border="true"
                 :show-header="false"
@@ -158,9 +158,11 @@
 
                 if (!instance.success) {
                     this.errorMsg = "无路径可寻";
+                    this.dataSource2 = [];
                 } else {
+                    this.errorMsg = null;
                     // 走到此，说明没有未走的格子，说明寻路成功，打印输出路径
-                    this.dataSource2 = new Array();
+                    this.dataSource2 = [];
                     for (let i = 0; i < instance.path.length; i++) {
                         this.dataSource2[i] = {}
                         for (let j = 0; j < instance.path[i].length; j++) {
