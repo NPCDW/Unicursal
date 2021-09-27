@@ -10,8 +10,8 @@
     <style>
         .inputNumberContent {
             position: absolute;
-            top:0;
-            left:0;
+            top: 0;
+            left: 0;
             width: 47px;
             height: 47px;
         }
@@ -21,6 +21,9 @@
             font-size: 15px;
             padding-left: 10px;
             padding-right: 10px;
+        }
+        .el-table--enable-row-hover .el-table__body tr:hover > td {
+            background-color: transparent !important;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -137,11 +140,11 @@
                 //     [0, 0, 0, 0, 0, 0]
                 // ]
                 let startX, startY;
-                let matrix = new Array();
+                let matrix = [];
                 for (let index = 0; index < this.dataSource.length; index++) {
-                    matrix[index] = new Array();
+                    matrix[index] = [];
                     for (let j = 0, len = Object.keys(this.dataSource[index]).length; j < len; j++) {
-                        if (this.dataSource[index][j + ''] == 1) {
+                        if (this.dataSource[index][j + ''] === 1) {
                             startX = index;
                             startY = j;
                         }
@@ -177,7 +180,7 @@
                 for (let index = 0; index < this.totalCol; index++) {
                     this.columns[index] = {dataIndex: index + ''};
                 }
-                this.dataSource = new Array();
+                this.dataSource = [];
                 for (let index = 0; index < this.totalRow; index++) {
                     this.dataSource[index] = {};
                     for (let j = 0; j < this.totalCol; j++) {
@@ -187,12 +190,13 @@
                 }
             },
             cellStyle({row, column, rowIndex, columnIndex}) {
-                if (row[columnIndex] == -1) {
+                if (row[columnIndex] === -1) {
                     return "border:1px solid #F56C6C!important;border-radius:25px;"
-                } else if (row[columnIndex] == 1) {
+                } else if (row[columnIndex] === 1) {
                     return "border:1px solid #67C23A!important;border-radius:25px;"
                 }
             },
+            // 点击单元格显示输入框，并选中文本
             cellClick(row, column, cell, event) {
                 this.cellClickRowIndex = row.key
                 this.cellClickColumnId = column.id
